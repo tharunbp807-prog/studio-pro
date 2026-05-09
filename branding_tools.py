@@ -1,4 +1,10 @@
-from moviepy.editor import *
+from moviepy.editor import (
+    VideoFileClip,
+    ImageClip,
+    TextClip,
+    CompositeVideoClip,
+    concatenate_videoclips
+)
 
 # ADD INTRO VIDEO
 def add_intro(intro_path, main_video_path, output):
