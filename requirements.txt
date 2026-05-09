@@ -1,8 +1,8 @@
 streamlit
 moviepy
-opencv-python
-pydub
-numpy
-pillow
 imageio
 imageio-ffmpeg
+numpy
+pillow
+decorator
+proglog
