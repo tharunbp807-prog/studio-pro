@@ -1,6 +1,4 @@
-
 import streamlit as st
-
 from branding_tools import *
 
 # PAGE SETTINGS
@@ -21,20 +19,46 @@ menu = st.sidebar.selectbox(
     ]
 )
 
-# VIDEO UPLOAD
+# INTRO VIDEO UPLOAD
+intro_video = st.file_uploader(
+    "Upload Intro Video",
+    type=["mp4"]
+)
+
+# MAIN VIDEO UPLOAD
 video = st.file_uploader(
-    "Upload Video",
+    "Upload Main Video",
     type=["mp4"]
 )
 
 # CHECK VIDEO
 if video:
 
-    # SAVE VIDEO
+    # SAVE MAIN VIDEO
     with open("temp/input.mp4", "wb") as f:
         f.write(video.read())
 
-    st.success("Video Uploaded Successfully")
+    st.success("Main Video Uploaded Successfully")
+
+    # SAVE INTRO VIDEO
+    if intro_video:
+
+        with open("temp/intro.mp4", "wb") as f:
+            f.write(intro_video.read())
+
+        st.success("Intro Video Uploaded Successfully")
+
+        # COMBINE INTRO + MAIN VIDEO
+        add_intro(
+            "temp/intro.mp4",
+            "temp/input.mp4",
+            "temp/combined.mp4"
+        )
+
+        final_input = "temp/combined.mp4"
+
+    else:
+        final_input = "temp/input.mp4"
 
     # LOGO WATERMARK
     if menu == "Logo Watermark":
@@ -54,7 +78,7 @@ if video:
             if st.button("Add Logo Watermark"):
 
                 add_logo(
-                    "temp/input.mp4",
+                    final_input,
                     "temp/logo.png",
                     "outputs/logo_output.mp4"
                 )
