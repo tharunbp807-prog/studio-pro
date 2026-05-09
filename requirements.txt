@@ -1,5 +1,5 @@
-streamlit
-moviepy
+streamlit==1.35.0
+moviepy==1.0.3
 imageio
 imageio-ffmpeg
 numpy
